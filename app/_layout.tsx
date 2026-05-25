@@ -4,16 +4,20 @@ import { Stack, useNavigationContainerRef, usePathname } from 'expo-router'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClient } from '@/lib/queryClient'
 import * as Sentry from '@sentry/react-native'
+import Constants from 'expo-constants'
 
+const IS_EXPO_GO = Constants.appOwnership === 'expo'
 const routingInstrumentation = Sentry.reactNavigationIntegration()
 
-Sentry.init({
-  dsn: process.env.EXPO_PUBLIC_SENTRY_DSN ?? '',
-  environment: __DEV__ ? 'development' : 'production',
-  enabled: !__DEV__ && !!process.env.EXPO_PUBLIC_SENTRY_DSN,
-  integrations: [routingInstrumentation],
-  tracesSampleRate: 0,
-})
+if (!IS_EXPO_GO) {
+  Sentry.init({
+    dsn: process.env.EXPO_PUBLIC_SENTRY_DSN ?? '',
+    environment: __DEV__ ? 'development' : 'production',
+    enabled: !__DEV__ && !!process.env.EXPO_PUBLIC_SENTRY_DSN,
+    integrations: [routingInstrumentation],
+    tracesSampleRate: 0,
+  })
+}
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
@@ -36,6 +40,7 @@ import { posthog, isPostHogEnabled, identify, resetIdentity, track } from '@/lib
 import { configureRevenueCat, loginRevenueCat, logoutRevenueCat } from '@/lib/purchases'
 import { SubscriptionProvider } from '@/contexts/SubscriptionContext'
 import { ToastProvider } from '@/contexts/ToastContext'
+import { WorkoutProvider } from '@/contexts/WorkoutContext'
 import i18n, { initI18n } from '@/lib/i18n'
 import OfflineBanner from '@/components/OfflineBanner'
 import OfflineOverlay from '@/components/OfflineOverlay'
@@ -217,6 +222,7 @@ function RootLayout() {
           <QueryClientProvider client={queryClient}>
           <SubscriptionProvider>
             <ToastProvider>
+            <WorkoutProvider>
             <SafeAreaProvider>
               <GestureHandlerRootView style={{ flex: 1, backgroundColor: BG }}>
                 <BottomSheetModalProvider>
@@ -267,6 +273,7 @@ function RootLayout() {
                 </BottomSheetModalProvider>
               </GestureHandlerRootView>
             </SafeAreaProvider>
+            </WorkoutProvider>
             </ToastProvider>
           </SubscriptionProvider>
           </QueryClientProvider>
@@ -276,4 +283,4 @@ function RootLayout() {
   )
 }
 
-export default Sentry.wrap(RootLayout)
+export default IS_EXPO_GO ? RootLayout : Sentry.wrap(RootLayout)

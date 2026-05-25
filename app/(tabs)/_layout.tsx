@@ -7,7 +7,7 @@
  * the screens registered here.
  */
 import { Tabs } from 'expo-router'
-import { House, Compass, Bell, CircleUser } from 'lucide-react-native'
+import { House, Dumbbell, TrendingUp, Trophy, Users } from 'lucide-react-native'
 import TabBar, { TAB_BAR_HEIGHT } from '@/components/TabBar'
 import { BG } from '@/lib/theme'
 
@@ -33,31 +33,41 @@ export default function TabsLayout() {
       />
 
       <Tabs.Screen
-        name="explore"
+        name="logger"
         options={{
-          tabBarLabel: 'Explore',
+          tabBarLabel: 'Log',
           tabBarIcon: ({ color, size }) => (
-            <Compass size={size} color={color} strokeWidth={1.6} />
+            <Dumbbell size={size} color={color} strokeWidth={1.6} />
           ),
         }}
       />
 
       <Tabs.Screen
-        name="activity"
+        name="charts"
         options={{
-          tabBarLabel: 'Activity',
+          tabBarLabel: 'Progress',
           tabBarIcon: ({ color, size }) => (
-            <Bell size={size} color={color} strokeWidth={1.6} />
+            <TrendingUp size={size} color={color} strokeWidth={1.6} />
           ),
         }}
       />
 
       <Tabs.Screen
-        name="profile"
+        name="records"
         options={{
-          tabBarLabel: 'Profile',
+          tabBarLabel: 'Records',
           tabBarIcon: ({ color, size }) => (
-            <CircleUser size={size} color={color} strokeWidth={1.6} />
+            <Trophy size={size} color={color} strokeWidth={1.6} />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="leaderboard"
+        options={{
+          tabBarLabel: 'Rank',
+          tabBarIcon: ({ color, size }) => (
+            <Users size={size} color={color} strokeWidth={1.6} />
           ),
         }}
       />

@@ -1,0 +1,2115 @@
+# Chat Conversation
+
+Note: _This is purely the output of the chat conversation and does not contain any raw data, codebase snippets, etc. used to generate the output._
+
+### User Input
+
+now its time to start it in expo go app in my mobile
+
+### Planner Response
+
+Let me check the project structure and configuration first.
+
+*Listed directory [template-mobile](file:///d:/ai-logs-git/template-mobile) *
+
+*Viewed [package.json](file:///d:/ai-logs-git/template-mobile/package.json) *
+
+*Viewed [app.json](file:///d:/ai-logs-git/template-mobile/app.json) *
+
+### Planner Response
+
+I see the project is using **Expo SDK 55** with several native modules. Let me check a few things that could cause issues with Expo Go, and then start the dev server.
+
+Let me check if there's an `.env` file and whether `node_modules` is properly installed:
+
+*User accepted the command `node -v && npm -v`*
+
+*Listed directory [app](file:///d:/ai-logs-git/template-mobile/app) *
+
+*User accepted the command `node -v`*
+
+*User accepted the command `npm -v`*
+
+### Planner Response
+
+Good — Node v22 and npm 10.9.2 are available. Before starting, there's an important consideration:
+
+> ⚠️ **Expo Go Compatibility Warning**: Your project uses several packages that require **custom native code** and won't work in Expo Go:
+> - `@sentry/react-native` (native Sentry SDK)
+> - `react-native-purchases` / `react-native-purchases-ui` (RevenueCat)
+> - `@gorhom/bottom-sheet` (may partially work, but often needs native builds)
+> 
+> These will likely crash or error in Expo Go. For full compatibility, you'd need a **development build** (`npx expo run:android` or EAS Build). However, we can still try launching with `--tunnel` mode so your phone can connect over the network.
+
+Let me start the Expo dev server. Make sure:
+1. Your phone has **Expo Go** installed (from Play Store / App Store)
+2. Your phone and PC are on the **same Wi-Fi network** (or we use tunnel mode)
+
+*User accepted the command `npx expo start --tunnel`*
+
+### Planner Response
+
+The Expo dev server is starting in **tunnel mode** (which uses ngrok to create a public URL so your phone can connect even if it's not on the same network). Let me check its status:
+
+### Planner Response
+
+The server is starting up. Let me set a timer to check back once it's had time to initialize:
+
+### Planner Response
+
+The Expo dev server is booting up with `--tunnel` mode. Here's what to do while it starts:
+
+### 📱 How to connect with Expo Go
+
+1. **Install Expo Go** on your phone from the Play Store (Android) or App Store (iOS)
+2. Once the server finishes starting, a **QR code** will appear in the terminal
+3. **Scan the QR code**:
+   - **Android**: Open Expo Go → tap "Scan QR Code"
+   - **iOS**: Use your Camera app to scan it — it'll prompt to open in Expo Go
+
+### ⚠️ Heads up on potential issues
+
+Your project includes native modules (`@sentry/react-native`, `react-native-purchases`) that **won't work in Expo Go**. If the app crashes on load, we have two options:
+
+1. **Quick fix**: Temporarily wrap/stub those native imports so the core UI loads in Expo Go
+2. **Proper fix**: Create a **development build** with `npx expo run:android` (requires Android SDK) or via EAS Build
+
+I'll check the server output shortly to get you the QR code.
+
+### Planner Response
+
+The tunnel mode failed due to an ngrok issue. Let me try **LAN mode** instead (the default), which works when your phone and PC are on the same Wi-Fi network:
+
+*User accepted the command `npx expo start`*
+
+### Planner Response
+
+Switched to LAN mode — waiting for the server to start up. I'll check the output shortly.
+
+### Planner Response
+
+The Expo dev server is **running** on `http://localhost:8081`. There are some version mismatch warnings, but those shouldn't block you.
+
+### 📱 To connect with Expo Go:
+
+1. **Make sure your phone and PC are on the same Wi-Fi network**
+2. Check your terminal — a **QR code** should be displayed there. You can also see the server output in your VS Code terminal.
+3. **Scan the QR code**:
+   - **Android**: Open Expo Go → tap "Scan QR Code"
+   - **iOS**: Use your Camera app
+
+### If you can't see the QR code in the terminal
+
+You can open it in your phone's Expo Go manually:
+- Type your PC's local IP address followed by `:8081` — e.g. `exp://192.168.x.x:8081`
+
+### 💡 Optional: Fix the version warnings
+
+The server flagged several outdated packages. You can fix them later by running:
+```
+npx expo install --fix
+```
+
+Let me know if:
+- The app loads successfully on your phone
+- You get any errors when it connects (likely from the native modules like Sentry/RevenueCat — we can stub those out)
+
+### User Input
+
+ i cant see the qr
+
+### Planner Response
+
+Let me check the server log to find the URL for you:
+
+*Viewed [task-25.log](file:///C:/Users/roni.RATHODRONAK/.gemini/antigravity-ide/brain/4e3d6572-aaaa-498e-9cec-9e202249fd0a/.system_generated/tasks/task-25.log) *
+
+### Planner Response
+
+The QR code got eaten by the log capture. Let me kill this server and restart it properly. First, let me find your local IP so I can give you a direct URL:
+
+*User accepted the command `ipconfig | Select-String "IPv4"`*
+
+### Planner Response
+
+Your local IP is **`10.136.65.126`**. Now please run the Expo dev server yourself directly in your VS Code terminal so you can see the QR code:
+
+### 👉 Run this in your VS Code terminal:
+
+```
+cd d:\ai-logs-git\template-mobile
+npx expo start
+```
+
+This will show the QR code directly in your terminal. Then:
+
+1. **Scan the QR code** with Expo Go (Android) or Camera (iOS)
+2. Or manually enter in Expo Go: **`exp://10.136.65.126:8081`**
+
+> **Why from your terminal?** The QR code uses special ASCII characters that get stripped when I run it from here. Running it in your own terminal will display it properly.
+
+Let me know once it connects and if you see any errors!
+
+### User Input
+
+› Scan the QR code above to open in Expo Go.
+› Metro: exp://10.136.65.126:8081
+› Web: http://localhost:8081
+
+› Using Expo Go (Press s to switch to development build)
+› Press ? │ show all commands
+
+Logs for your project will appear below. Press Ctrl+C to exit.
+? 
+
+It is recommended to log in with your Expo account before proceeding. 
+Learn more: https://expo.fyi/unverified-app-expo-go
+ » - Use arrow-keys. Return to submit.
+>   Log in
+    Proceed anonymously
+
+this is the terminal after running start expo 
+and the error is already given as image lets fix it
+
+### Planner Response
+
+The error `Failed to download remote update` means your phone **can't reach** the Metro bundler on your PC. This is almost always a network issue. Let me help fix it.
+
+First, a couple of things to check:
+
+1. **In the terminal**, select **"Proceed anonymously"** (arrow down and press Enter)
+2. **Is your phone on the same WiFi as your PC?** I can see your phone shows mobile data (LTE/5G) — it needs to be on **WiFi**, on the **same network** as your PC.
+
+Let me also open the Windows Firewall to allow connections on port 8081:
+
+*User accepted the command `netsh advfirewall firewall add rule name="Expo Metro Bundler" dir=in action=allow protocol=TCP localport=8081`*
+
+### Planner Response
+
+The firewall command needs admin privileges. Here's what you need to do:
+
+### Steps to fix:
+
+**Step 1: Connect your phone to WiFi**
+- Your phone appears to be on **mobile data** (LTE/5G). Connect it to the **same WiFi network** as your PC.
+
+**Step 2: Select "Proceed anonymously" in the terminal**
+- The terminal is waiting for your input — arrow down to "Proceed anonymously" and press Enter.
+
+**Step 3: Allow through Windows Firewall**
+- Open a **PowerShell as Administrator** (right-click Start → "Terminal (Admin)") and run:
+```powershell
+netsh advfirewall firewall add rule name="Expo Metro Bundler" dir=in action=allow protocol=TCP localport=8081
+```
+
+**Step 4: Re-scan the QR code** in Expo Go.
+
+---
+
+### If your phone and PC can't be on the same WiFi:
+You can use **USB + ADB reverse** instead:
+1. Connect your phone via USB cable
+2. Enable USB debugging on your phone
+3. Run: `adb reverse tcp:8081 tcp:8081`
+4. In Expo Go, manually enter: **`exp://127.0.0.1:8081`**
+
+Let me know which option works for your setup!
+
+### User Input
+
+You can use USB + ADB reverse instead:
+
+Connect your phone via USB cable
+Enable USB debugging on your phone
+Run: adb reverse tcp:8081 tcp:8081
+In Expo Go, manually enter: exp://127.0.0.1:8081
+
+i want this one
+
+### Planner Response
+
+Let's get you set up with USB + ADB. First, let me check if ADB is available:
+
+*User accepted the command `adb version`*
+
+### Planner Response
+
+ADB is not installed. Let me check if Android SDK is anywhere on your system:
+
+*User accepted the command `Get-ChildItem -Path "$env:LOCALAPPDATA\Android" -ErrorAction SilentlyContinue`*
+
+*User accepted the command `echo $env:ANDROID_HOME`*
+
+### Planner Response
+
+No Android SDK installed. You'll need ADB. Here's the quickest way to get just ADB (no need for the full Android Studio):
+
+### Quick ADB Setup
+
+**Option 1 — Download standalone ADB (fastest)**
+
+1. Download **Android SDK Platform Tools** from:  
+   👉 https://developer.android.com/tools/releases/platform-tools
+
+2. Extract the zip to a folder, e.g. `C:\platform-tools`
+
+3. Then run these commands in PowerShell:
+   ```powershell
+   C:\platform-tools\adb.exe devices
+   ```
+
+**Option 2 — Install via winget (if available)**
+```powershell
+winget install Google.PlatformTools
+```
+
+---
+
+### Once ADB is ready, do these steps:
+
+1. **On your phone**: Enable **Developer Options** → turn on **USB Debugging**
+   - Go to Settings → About Phone → tap "Build Number" 7 times
+   - Go back to Settings → Developer Options → enable USB Debugging
+
+2. **Connect phone via USB cable**
+
+3. **Verify connection**:
+   ```powershell
+   adb devices
+   ```
+   You should see your device listed. If it says "unauthorized", check your phone for a popup asking to allow USB debugging — tap **Allow**.
+
+4. **Set up port forwarding**:
+   ```powershell
+   adb reverse tcp:8081 tcp:8081
+   ```
+
+5. **In Expo Go on your phone**, enter manually:
+   ```
+   exp://127.0.0.1:8081
+   ```
+
+Let me know once you have ADB installed and your phone connected — I can run the `adb reverse` command for you!
+
+### User Input
+
+PS C:\WINDOWS\system32> D:\platform-tools\platform-tools\adb.exe devices
+* daemon not running; starting now at tcp:5037
+* daemon started successfully
+List of devices attached
+L7V4IZG6GEW49HZX        unauthorized
+
+
+### Planner Response
+
+Almost there! Your phone shows **"unauthorized"** — this means you need to approve the connection on your phone.
+
+### 👉 Check your phone screen right now
+
+You should see a popup like:
+
+> **"Allow USB debugging?"**  
+> The computer's RSA key fingerprint is: ...  
+> ☐ Always allow from this computer
+
+1. **Check "Always allow from this computer"**
+2. Tap **"Allow" / "OK"**
+
+Then run the devices command again to confirm:
+```powershell
+D:\platform-tools\platform-tools\adb.exe devices
+```
+
+It should now show `device` instead of `unauthorized`:
+```
+L7V4IZG6GEW49HZX        device
+```
+
+Once that's confirmed, run:
+```powershell
+D:\platform-tools\platform-tools\adb.exe reverse tcp:8081 tcp:8081
+```
+
+Then open **Expo Go** on your phone and enter: **`exp://127.0.0.1:8081`**
+
+Let me know how it goes!
+
+### User Input
+
+PS D:\ai-logs-git\template-mobile> npx expo start
+Starting project at D:\ai-logs-git\template-mobile
+Starting Metro Bundler
+
+The following packages should be updated for best compatibility with the installed expo version:
+  @expo/metro-runtime@55.0.9 - expected version: ~55.0.11
+  expo@55.0.15 - expected version: ~55.0.26
+  expo-constants@55.0.14 - expected version: ~55.0.16
+  expo-font@55.0.6 - expected version: ~55.0.8
+  expo-image@55.0.8 - expected version: ~55.0.11
+  expo-image-picker@55.0.18 - expected version: ~55.0.20
+  expo-linear-gradient@55.0.13 - expected version: ~55.0.14
+  expo-localization@55.0.13 - expected version: ~55.0.15
+  expo-router@55.0.12 - expected version: ~55.0.16
+  expo-secure-store@55.0.13 - expected version: ~55.0.14
+  expo-splash-screen@55.0.18 - expected version: ~55.0.21
+  expo-status-bar@55.0.5 - expected version: ~55.0.6
+  expo-web-browser@55.0.14 - expected version: ~55.0.16
+  react-native@0.83.4 - expected version: 0.83.6
+  react-native-worklets@0.7.2 - expected version: 0.7.4
+  @types/jest@30.0.0 - expected version: 29.5.14
+  jest-expo@55.0.16 - expected version: ~55.0.18
+Your project may not work correctly until you install the expected versions of the packages.
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█ ▄▄▄▄▄ █▀ █▀▀ ▄▀▀█ ▄▄▄▄▄ █
+█ █   █ █▀ ▄ █▀█▀ █ █   █ █
+█ █▄▄▄█ █▀█ █▄▄▄▀▀█ █▄▄▄█ █
+█▄▄▄▄▄▄▄█▄█▄█ █▄█ █▄▄▄▄▄▄▄█
+█▄    █▄   ▄█▄▄▀▄▄ █▄█ █ ██
+██▀▀▀██▄▄█ ▀ ▄██▄▀█▄▀  █▄ █
+█ █▀ ██▄▄▄ ▀▄▀ ▀██▀▄█▄▀ ▀██
+█ █▄▀██▄█ ▀▀█▀██  █▄██ ▄  █
+█▄█▄██▄▄▄▀█▀█▄▄▀▄ ▄▄▄ ▄ ▄▄█
+█ ▄▄▄▄▄ █▄▄▀ ▄█▀▀ █▄█ ▀▄▄▄█
+█ █   █ █ ▄▄▄▀▀█  ▄   ▄   █
+█ █▄▄▄█ █ ▄▀█▀ ▄▀  ▀▀█▀▄█ █
+█▄▄▄▄▄▄▄█▄▄▄█▄█▄▄██▄███▄▄▄█
+
+› Scan the QR code above to open in Expo Go.
+› Metro: exp://10.224.5.77:8081
+› Web: http://localhost:8081
+
+› Using Expo Go (Press s to switch to development build)
+› Press ? │ show all commands
+
+Logs for your project will appear below. Press Ctrl+C to exit.
+ ERROR  Project is incompatible with this version of Expo Go
+
+This project requires a newer version of Expo Go.
+
+How to fix this error:
+Download the latest version of Expo Go from the Play Store.
+ ERROR  Project is incompatible with this version of Expo Go
+
+This project requires a newer version of Expo Go.
+
+How to fix this error:
+Download the latest version of Expo Go from the Play Store.
+
+*User accepted the command `npx expo start`*
+
+*User accepted the command `npx expo login --help`*
+
+*User accepted the command `npx expo login`*
+
+### Planner Response
+
+Good news — you're connected via ADB and logged in! The error is clear: your **Expo Go app on your phone is outdated** and doesn't support SDK 55.
+
+### Two things to do:
+
+**1. Update Expo Go on your phone**
+- Open **Google Play Store** on your phone
+- Search for **"Expo Go"**
+- Tap **"Update"** (if available)
+
+**2. Fix the package version mismatches** (while Expo Go updates):
+
+*User accepted the command `npx expo install --fix`*
+
+### Planner Response
+
+Packages are updating. Once both are done:
+
+1. **Stop** the current Expo server in your terminal (`Ctrl+C`)
+2. **Restart** with `npx expo start`
+3. **Scan QR** or enter `exp://127.0.0.1:8081` in the updated Expo Go
+
+Let me know once Expo Go is updated on your phone!
+
+### User Input
+
+PS D:\ai-logs-git\template-mobile> npx expo start
+Starting project at D:\ai-logs-git\template-mobile
+Starting Metro Bundler
+
+D:\ai-logs-git\template-mobile\node_modules\expo\node_modules\@expo\cli\build\src\utils\errors.js:130
+    throw error;
+    ^
+
+Error: ENOENT: no such file or directory, watch 'D:\ai-logs-git\template-mobile\node_modules\expo\node_modules\@expo\cli\node_modules\@expo\metro-runtime'
+    at FSWatcher.<computed> (node:internal/fs/watchers:247:19)
+    at Object.watch (node:fs:2550:36)
+    at FallbackWatcher.#watchdir (D:\ai-logs-git\template-mobile\node_modules\@expo\metro\node_modules\metro-file-map\src\watchers\FallbackWatcher.js:133:33)
+    at D:\ai-logs-git\template-mobile\node_modules\@expo\metro\node_modules\metro-file-map\src\watchers\FallbackWatcher.js:58:25
+    at Walker.<anonymous> (D:\ai-logs-git\template-mobile\node_modules\@expo\metro\node_modules\metro-file-map\src\watchers\FallbackWatcher.js:378:5)
+    at Walker.emit (node:events:518:28)
+    at D:\ai-logs-git\template-mobile\node_modules\walker\lib\walker.js:69:16
+    at FSReqCallback.oncomplete (node:fs:188:23) {
+  errno: -4058,
+  syscall: 'watch',
+  code: 'ENOENT',
+  path: 'D:\\ai-logs-git\\template-mobile\\node_modules\\expo\\node_modules\\@expo\\cli\\node_modules\\@expo\\metro-runtime',
+  filename: 'D:\\ai-logs-git\\template-mobile\\node_modules\\expo\\node_modules\\@expo\\cli\\node_modules\\@expo\\metro-runtime'
+}
+
+Node.js v22.16.0
+
+*User accepted the command `npx expo start`*
+
+*User accepted the command `npx expo start`*
+
+### Planner Response
+
+The `node_modules` got corrupted from the partial package update. Let's do a clean reinstall:
+
+*User accepted the command `Remove-Item -Recurse -Force node_modules`*
+
+### Planner Response
+
+Good — the `expo install --fix` actually completed and updated the packages. Now `node_modules` is being deleted for a clean state. Let me wait for that to finish:
+
+### Planner Response
+
+While we wait — **have you updated Expo Go on your phone from the Play Store?** That's the main fix for the "Project is incompatible" error. The package updates alone won't help if the Expo Go app is outdated.
+
+### Planner Response
+
+Windows `Remove-Item` can't handle the deep paths in `expo-image`. Let me use `cmd /c rmdir` which handles this better:
+
+*User accepted the command `cmd /c "rmdir /s /q D:\ai-logs-git\template-mobile\node_modules"`*
+
+### Planner Response
+
+Some deep iOS files with paths too long even for `cmd`. Let me clean those up with a rename trick:
+
+*User accepted the command `Test-Path "D:\ai-logs-git\template-mobile\node_modules"`*
+
+### Planner Response
+
+Still there. Let me use `robocopy` with an empty folder trick — it handles long paths:
+
+*User accepted the command `New-Item -ItemType Directory -Path "D:\ai-logs-git\template-mobile\_empty" -Force; robocopy "D:\ai-logs-git\template-mobile\_empty" "D:\ai-logs-git\template-mobile\node_modules" /MIR /R:1 /W:1; cmd /c "rmdir /s /q D:\ai-logs-git\template-mobile\node_modules"; cmd /c "rmdir /s /q D:\ai-logs-git\template-mobile\_empty"`*
+
+### Planner Response
+
+Robocopy identified the files but couldn't delete them either (paths too long). Let me use the Windows long path prefix:
+
+*User accepted the command `cmd /c "del /f /q \\?\D:\ai-logs-git\template-mobile\node_modules\expo-image\prebuilds\spm-deps\SDWebImageAVIFCoder\release\SDWebImageAVIFCoder.xcframework\ios-arm64_x86_64-simulator\dSYMs\SDWebImageAVIFCoder.framework.dSYM\Contents\Resources\Relocations\aarch64\SDWebImageAVIFCoder.yml"`*
+
+### Planner Response
+
+Let me try a different approach — use Node.js itself which handles long paths on Windows:
+
+*User accepted the command `node -e "const fs = require('fs'); fs.rmSync('D:\\ai-logs-git\\template-mobile\\node_modules', { recursive: true, force: true }); console.log('Done!');"`*
+
+### Planner Response
+
+`node_modules` is gone. Now let's do a fresh install:
+
+*User accepted the command `npm install`*
+
+### Planner Response
+
+Dependencies are installing. While we wait — **the key fix is still updating Expo Go on your phone**. Even with clean packages, if Expo Go is old, you'll get the same "incompatible" error.
+
+👉 **Please go to Play Store → search "Expo Go" → tap Update**
+
+Let me know once it's updated, and we'll be ready to start the server!
+
+### User Input
+
+already latest version
+
+### Planner Response
+
+`npm install` completed successfully! Expo Go is already latest — let me check the exact Expo SDK version installed and figure out the compatibility issue:
+
+*User accepted the command `node -e "console.log(require('./node_modules/expo/package.json').version)"`*
+
+*User accepted the command `npx expo config --type public 2>$null | Select-String "sdkVersion"`*
+
+### Planner Response
+
+SDK 55.0.0 with expo@55.0.26. Let me check what Expo Go version is on your phone. Can you tell me the version shown in Expo Go's settings/about screen?
+
+In the meantime, let me try a different approach — let's check if we can use the **Expo Go development client URL format** or if there's a known issue:
+
+*Searched web for Expo Go SDK 55 "incompatible with this version" Android 2025 2026*
+
+### Planner Response
+
+The research confirms it: **Expo Go on the Play Store may lag behind the CLI SDK release**. Since your Expo Go is "latest" but still incompatible with SDK 55, you can install the correct Expo Go version directly via the CLI. Let me do that through ADB:
+
+*User accepted the command `D:\platform-tools\platform-tools\adb.exe devices`*
+
+### Planner Response
+
+Phone is connected and authorized. Now let's install the **correct Expo Go APK** for SDK 55 directly onto your phone:
+
+*User accepted the command `npx expo install:client:android`*
+
+### Planner Response
+
+That command syntax changed. Let me try the correct approach:
+
+*User accepted the command `npx expo start --android`*
+
+### Planner Response
+
+This command should automatically install the compatible Expo Go APK on your phone via ADB and launch the app. Let me check what's happening...
+
+### Planner Response
+
+Expo can't find `adb` because it's not in PATH. Let me set it up and try again:
+
+*User accepted the command `$env:PATH = "D:\platform-tools\platform-tools;$env:PATH"; $env:ANDROID_HOME = "D:\platform-tools\platform-tools"; npx expo start --android`*
+
+### Planner Response
+
+This should now find `adb`, download the **SDK 55-compatible Expo Go APK**, install it on your phone, and launch the app automatically. Waiting for results...
+
+### Planner Response
+
+Expo expects `ANDROID_HOME/platform-tools/adb.exe`. Since ADB is at `D:\platform-tools\platform-tools\adb.exe`, I need to set `ANDROID_HOME` one level up:
+
+*User accepted the command `$env:ANDROID_HOME = "D:\platform-tools"; $env:PATH = "D:\platform-tools\platform-tools;$env:PATH"; adb devices`*
+
+### Planner Response
+
+ADB works now. Let's launch:
+
+*User accepted the command `$env:ANDROID_HOME = "D:\platform-tools"; $env:PATH = "D:\platform-tools\platform-tools;$env:PATH"; npx expo start --android`*
+
+### Planner Response
+
+Now with the correct `ANDROID_HOME` path, Expo should find ADB, download the SDK 55-compatible Expo Go APK, install it on your phone via USB, and open the app. This may take a minute to download the APK. Watching for results...
+
+### Planner Response
+
+Found the issue! Your phone has **Expo Go 54.0.8** but needs **55.0.7**. The command needs to be interactive to confirm the install. 
+
+Please run this in **your terminal** (not mine — it needs to be interactive):
+
+```powershell
+$env:ANDROID_HOME = "D:\platform-tools"
+$env:PATH = "D:\platform-tools\platform-tools;$env:PATH"
+npx expo start --android
+```
+
+When it asks **"Install the recommended Expo Go version?"** — type **Y** and press Enter.
+
+This will:
+1. Download Expo Go **55.0.7** APK
+2. Install it on your phone via USB
+3. Launch the app with your project
+
+Let me know once it's running! 🚀
+
+### User Input
+
+PS C:\WINDOWS\system32> npx expo start --android
+node:internal/modules/cjs/loader:1404
+  throw err;
+  ^
+
+Error: Cannot find module 'C:\Users\roni.RATHODRONAK\AppData\Roaming\npm\node_modules\expo-cli\bin\expo.js'
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    at Function._load (node:internal/modules/cjs/loader:1211:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
+
+Node.js v22.16.0
+PS C:\WINDOWS\system32>
+
+### Planner Response
+
+You need to run it from the **project directory**, not `system32`. Run these commands in order:
+
+```powershell
+cd D:\ai-logs-git\template-mobile
+$env:ANDROID_HOME = "D:\platform-tools"
+$env:PATH = "D:\platform-tools\platform-tools;$env:PATH"
+npx expo start --android
+```
+
+Then say **Y** when it asks to install Expo Go 55.0.7.
+
+### User Input
+
+Logs for your project will appear below. Press Ctrl+C to exit.
+Android Bundled 28657ms node_modules\expo-router\entry.js (4349 modules)
+ WARN  Route "./(auth)/login.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(onboarding)/index.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(tabs)/_layout.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(tabs)/charts.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(tabs)/index.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(tabs)/leaderboard.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(tabs)/logger.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(tabs)/records.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./_layout.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  [Supabase] Missing EXPO_PUBLIC_SUPABASE_URL or key — running without backend. Set values in .env.local to enable auth and database.
+ WARN  Route "./index.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./upgrade.tsx" is missing the required default export. Ensure a React component is exported as default.
+ ERROR  [WorkletsError: [Worklets] Mismatch between JavaScript code version and Worklets Babel plugin version (0.7.4 vs. 0.8.3).
+    See `https://docs.swmansion.com/react-native-worklets/docs/guides/troubleshooting#mismatch-between-javascript-code-version-and-worklets-babel-plugin-version` for more details.
+    Offending code was: `function runOnUIWorklet_threadsNativeTs3(){throw new WorkletsError('`runOnUI` cannot be called on the UI runtime. Please call the function synchronously or use `queueMicrotask` or `requestAnimationFrame` instead.');}`]
+
+Call Stack
+  WorkletsErrorConstructor (node_modules\react-native-worklets\src\debug\WorkletsError.native.ts)
+  cloneWorklet (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  createSerializable (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  <global> (node_modules\react-native-worklets\src\threads.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\runLoop\uiRuntime\requestAnimationFrame.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [WorkletsError: [Worklets] Mismatch between JavaScript code version and Worklets Babel plugin version (0.7.4 vs. 0.8.3).
+    See `https://docs.swmansion.com/react-native-worklets/docs/guides/troubleshooting#mismatch-between-javascript-code-version-and-worklets-babel-plugin-version` for more details.
+    Offending code was: `function runOnUIWorklet_threadsNativeTs3(){throw new WorkletsError('`runOnUI` cannot be called on the UI runtime. Please call the function synchronously or use `queueMicrotask` or `requestAnimationFrame` instead.');}`]
+
+Call Stack
+  WorkletsErrorConstructor (node_modules\react-native-worklets\src\debug\WorkletsError.native.ts)
+  cloneWorklet (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  createSerializable (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  <global> (node_modules\react-native-worklets\src\threads.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\runLoop\uiRuntime\requestAnimationFrame.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [WorkletsError: [Worklets] Mismatch between JavaScript code version and Worklets Babel plugin version (0.7.4 vs. 0.8.3).
+    See `https://docs.swmansion.com/react-native-worklets/docs/guides/troubleshooting#mismatch-between-javascript-code-version-and-worklets-babel-plugin-version` for more details.
+    Offending code was: `function runOnUIWorklet_threadsNativeTs3(){throw new WorkletsError('`runOnUI` cannot be called on the UI runtime. Please call the function synchronously or use `queueMicrotask` or `requestAnimationFrame` instead.');}`]
+
+Call Stack
+  WorkletsErrorConstructor (node_modules\react-native-worklets\src\debug\WorkletsError.native.ts)
+  cloneWorklet (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  createSerializable (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  <global> (node_modules\react-native-worklets\src\threads.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\runLoop\uiRuntime\requestAnimationFrame.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [WorkletsError: [Worklets] Mismatch between JavaScript code version and Worklets Babel plugin version (0.7.4 vs. 0.8.3).
+    See `https://docs.swmansion.com/react-native-worklets/docs/guides/troubleshooting#mismatch-between-javascript-code-version-and-worklets-babel-plugin-version` for more details.
+    Offending code was: `function runOnUIWorklet_threadsNativeTs3(){throw new WorkletsError('`runOnUI` cannot be called on the UI runtime. Please call the function synchronously or use `queueMicrotask` or `requestAnimationFrame` instead.');}`]
+
+Call Stack
+  WorkletsErrorConstructor (node_modules\react-native-worklets\src\debug\WorkletsError.native.ts)
+  cloneWorklet (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  createSerializable (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  <global> (node_modules\react-native-worklets\src\threads.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\runLoop\uiRuntime\requestAnimationFrame.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [WorkletsError: [Worklets] Mismatch between JavaScript code version and Worklets Babel plugin version (0.7.4 vs. 0.8.3).
+    See `https://docs.swmansion.com/react-native-worklets/docs/guides/troubleshooting#mismatch-between-javascript-code-version-and-worklets-babel-plugin-version` for more details.
+    Offending code was: `function runOnUIWorklet_threadsNativeTs3(){throw new WorkletsError('`runOnUI` cannot be called on the UI runtime. Please call the function synchronously or use `queueMicrotask` or `requestAnimationFrame` instead.');}`]
+
+Call Stack
+  WorkletsErrorConstructor (node_modules\react-native-worklets\src\debug\WorkletsError.native.ts)
+  cloneWorklet (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  createSerializable (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  <global> (node_modules\react-native-worklets\src\threads.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\runLoop\uiRuntime\requestAnimationFrame.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [WorkletsError: [Worklets] Mismatch between JavaScript code version and Worklets Babel plugin version (0.7.4 vs. 0.8.3).
+    See `https://docs.swmansion.com/react-native-worklets/docs/guides/troubleshooting#mismatch-between-javascript-code-version-and-worklets-babel-plugin-version` for more details.
+    Offending code was: `function runOnUIWorklet_threadsNativeTs3(){throw new WorkletsError('`runOnUI` cannot be called on the UI runtime. Please call the function synchronously or use `queueMicrotask` or `requestAnimationFrame` instead.');}`]
+
+Call Stack
+  WorkletsErrorConstructor (node_modules\react-native-worklets\src\debug\WorkletsError.native.ts)
+  cloneWorklet (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  createSerializable (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  <global> (node_modules\react-native-worklets\src\threads.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\runLoop\uiRuntime\requestAnimationFrame.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [WorkletsError: [Worklets] Mismatch between JavaScript code version and Worklets Babel plugin version (0.7.4 vs. 0.8.3).
+    See `https://docs.swmansion.com/react-native-worklets/docs/guides/troubleshooting#mismatch-between-javascript-code-version-and-worklets-babel-plugin-version` for more details.
+    Offending code was: `function runOnUIWorklet_threadsNativeTs3(){throw new WorkletsError('`runOnUI` cannot be called on the UI runtime. Please call the function synchronously or use `queueMicrotask` or `requestAnimationFrame` instead.');}`]
+
+Call Stack
+  WorkletsErrorConstructor (node_modules\react-native-worklets\src\debug\WorkletsError.native.ts)
+  cloneWorklet (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  createSerializable (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  <global> (node_modules\react-native-worklets\src\threads.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\runLoop\uiRuntime\requestAnimationFrame.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [WorkletsError: [Worklets] Mismatch between JavaScript code version and Worklets Babel plugin version (0.7.4 vs. 0.8.3).
+    See `https://docs.swmansion.com/react-native-worklets/docs/guides/troubleshooting#mismatch-between-javascript-code-version-and-worklets-babel-plugin-version` for more details.
+    Offending code was: `function runOnUIWorklet_threadsNativeTs3(){throw new WorkletsError('`runOnUI` cannot be called on the UI runtime. Please call the function synchronously or use `queueMicrotask` or `requestAnimationFrame` instead.');}`]
+
+Call Stack
+  WorkletsErrorConstructor (node_modules\react-native-worklets\src\debug\WorkletsError.native.ts)
+  cloneWorklet (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  createSerializable (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  <global> (node_modules\react-native-worklets\src\threads.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\runLoop\uiRuntime\requestAnimationFrame.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [WorkletsError: [Worklets] Mismatch between JavaScript code version and Worklets Babel plugin version (0.7.4 vs. 0.8.3).
+    See `https://docs.swmansion.com/react-native-worklets/docs/guides/troubleshooting#mismatch-between-javascript-code-version-and-worklets-babel-plugin-version` for more details.
+    Offending code was: `function runOnUIWorklet_threadsNativeTs3(){throw new WorkletsError('`runOnUI` cannot be called on the UI runtime. Please call the function synchronously or use `queueMicrotask` or `requestAnimationFrame` instead.');}`]
+
+Call Stack
+  WorkletsErrorConstructor (node_modules\react-native-worklets\src\debug\WorkletsError.native.ts)
+  cloneWorklet (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  createSerializable (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  <global> (node_modules\react-native-worklets\src\threads.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\runLoop\uiRuntime\requestAnimationFrame.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [WorkletsError: [Worklets] Mismatch between JavaScript code version and Worklets Babel plugin version (0.7.4 vs. 0.8.3).
+    See `https://docs.swmansion.com/react-native-worklets/docs/guides/troubleshooting#mismatch-between-javascript-code-version-and-worklets-babel-plugin-version` for more details.
+    Offending code was: `function runOnUIWorklet_threadsNativeTs3(){throw new WorkletsError('`runOnUI` cannot be called on the UI runtime. Please call the function synchronously or use `queueMicrotask` or `requestAnimationFrame` instead.');}`]
+
+Call Stack
+  WorkletsErrorConstructor (node_modules\react-native-worklets\src\debug\WorkletsError.native.ts)
+  cloneWorklet (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  createSerializable (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  <global> (node_modules\react-native-worklets\src\threads.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\runLoop\uiRuntime\requestAnimationFrame.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [WorkletsError: [Worklets] Mismatch between JavaScript code version and Worklets Babel plugin version (0.7.4 vs. 0.8.3).
+    See `https://docs.swmansion.com/react-native-worklets/docs/guides/troubleshooting#mismatch-between-javascript-code-version-and-worklets-babel-plugin-version` for more details.
+    Offending code was: `function runOnUIWorklet_threadsNativeTs3(){throw new WorkletsError('`runOnUI` cannot be called on the UI runtime. Please call the function synchronously or use `queueMicrotask` or `requestAnimationFrame` instead.');}`]
+
+Call Stack
+  WorkletsErrorConstructor (node_modules\react-native-worklets\src\debug\WorkletsError.native.ts)
+  cloneWorklet (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  createSerializable (node_modules\react-native-worklets\src\memory\serializable.native.ts)
+  <global> (node_modules\react-native-worklets\src\threads.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\runLoop\uiRuntime\requestAnimationFrame.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+
+### Planner Response
+
+Progress! The app is bundling and connecting to your phone! There are two issues to fix:
+
+1. **`react-native-worklets` version mismatch** (0.7.4 JS vs 0.8.3 Babel plugin) — causing the crash loop
+2. **Missing default exports** in route files
+
+Let me fix both. First, let me check the versions and the route files:
+
+*User accepted the command `node -e "console.log(require('./node_modules/react-native-worklets/package.json').version); console.log(require('./node_modules/react-native-reanimated/package.json').version)"`*
+
+*Viewed [_layout.tsx](file:///d:/ai-logs-git/template-mobile/app/_layout.tsx) *
+
+### Planner Response
+
+I see the issues clearly now. The root layout has `export default` ✅, but there's a **worklets version mismatch**. `react-native-worklets@0.7.4` is installed but the Babel plugin from `react-native-reanimated@4.2.1` ships worklets plugin `0.8.3`. Let me fix this by upgrading `react-native-worklets` to match:
+
+*User accepted the command `npm install react-native-worklets@0.8.3`*
+
+### Planner Response
+
+While that installs, let me also check the route files that are missing default exports:
+
+*Viewed [_layout.tsx](file:///d:/ai-logs-git/template-mobile/app/%28tabs%29/_layout.tsx) *
+
+### Planner Response
+
+`react-native-worklets@0.8.3` is installed. The tabs layout has a default export, so that warning was likely a Metro cache issue. Let me clear the Metro cache and restart. 
+
+**First, stop the current server in your terminal (`Ctrl+C`)**, then run:
+
+```powershell
+npx expo start --clear --android
+```
+
+The `--clear` flag will reset the Metro bundler cache, which should fix both the worklets mismatch and the stale "missing default export" warnings.
+
+Make sure you still have the environment variables set:
+```powershell
+$env:ANDROID_HOME = "D:\platform-tools"
+$env:PATH = "D:\platform-tools\platform-tools;$env:PATH"
+npx expo start --clear --android
+```
+
+This should now launch cleanly on your phone! Let me know what happens. 🚀
+
+### User Input
+
+
+› Scan the QR code above to open in Expo Go.
+› Metro: exp://10.224.5.77:8081
+› Web: http://localhost:8081
+
+› Using Expo Go (Press s to switch to development build)
+› Press ? │ show all commands
+
+Logs for your project will appear below. Press Ctrl+C to exit.
+Android Bundled 28238ms node_modules\expo-router\entry.js (4356 modules)
+ WARN  Route "./(auth)/login.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(onboarding)/index.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(tabs)/_layout.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(tabs)/charts.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(tabs)/index.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(tabs)/leaderboard.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(tabs)/logger.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./(tabs)/records.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./_layout.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  [Supabase] Missing EXPO_PUBLIC_SUPABASE_URL or key — running without backend. Set values in .env.local to enable auth and database.
+ WARN  Route "./index.tsx" is missing the required default export. Ensure a React component is exported as default.
+ WARN  Route "./upgrade.tsx" is missing the required default export. Ensure a React component is exported as default.
+ ERROR  [Error: Exception in HostFunction: TurboModule method "installTurboModule" called with 1 arguments (expected argument count: 0).]
+
+Call Stack
+  installTurboModule (<native>)
+  constructor (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  <global> (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\featureFlags\featureFlags.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [Error: Exception in HostFunction: TurboModule method "installTurboModule" called with 1 arguments (expected argument count: 0).]
+
+Call Stack
+  installTurboModule (<native>)
+  constructor (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  <global> (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\featureFlags\featureFlags.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [Error: Exception in HostFunction: TurboModule method "installTurboModule" called with 1 arguments (expected argument count: 0).]
+
+Call Stack
+  installTurboModule (<native>)
+  constructor (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  <global> (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\featureFlags\featureFlags.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [Error: Exception in HostFunction: TurboModule method "installTurboModule" called with 1 arguments (expected argument count: 0).]
+
+Call Stack
+  installTurboModule (<native>)
+  constructor (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  <global> (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\featureFlags\featureFlags.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [Error: Exception in HostFunction: TurboModule method "installTurboModule" called with 1 arguments (expected argument count: 0).]
+
+Call Stack
+  installTurboModule (<native>)
+  constructor (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  <global> (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\featureFlags\featureFlags.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [Error: Exception in HostFunction: TurboModule method "installTurboModule" called with 1 arguments (expected argument count: 0).]
+
+Call Stack
+  installTurboModule (<native>)
+  constructor (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  <global> (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\featureFlags\featureFlags.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [Error: Exception in HostFunction: TurboModule method "installTurboModule" called with 1 arguments (expected argument count: 0).]
+
+Call Stack
+  installTurboModule (<native>)
+  constructor (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  <global> (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\featureFlags\featureFlags.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [Error: Exception in HostFunction: TurboModule method "installTurboModule" called with 1 arguments (expected argument count: 0).]
+
+Call Stack
+  installTurboModule (<native>)
+  constructor (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  <global> (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\featureFlags\featureFlags.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [Error: Exception in HostFunction: TurboModule method "installTurboModule" called with 1 arguments (expected argument count: 0).]
+
+Call Stack
+  installTurboModule (<native>)
+  constructor (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  <global> (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\featureFlags\featureFlags.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [Error: Exception in HostFunction: TurboModule method "installTurboModule" called with 1 arguments (expected argument count: 0).]
+
+Call Stack
+  installTurboModule (<native>)
+  constructor (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  <global> (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\featureFlags\featureFlags.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+ ERROR  [Error: Exception in HostFunction: TurboModule method "installTurboModule" called with 1 arguments (expected argument count: 0).]
+
+Call Stack
+  installTurboModule (<native>)
+  constructor (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  <global> (node_modules\react-native-worklets\src\WorkletsModule\NativeWorklets.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\featureFlags\featureFlags.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\initializers\initializers.native.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-worklets\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\initializers.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (node_modules\react-native-reanimated\src\index.ts)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  <global> (app\(auth)\login.tsx)
+  loadModuleImplementation (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  guardedLoadModule (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  metroRequire (node_modules\expo\node_modules\@expo\cli\build\metro-require\require.js)
+  Object.defineProperties$argument_1.authLoginTsx.get (app)
+  metroContext (app)
+  node.loadRoute (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getDirectoryTree (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutesCore.js)
+  getRoutes (node_modules\expo-router\build\getRoutes.js)
+  useStore (node_modules\expo-router\build\global-state\router-store.js)
+  ContextNavigator (node_modules\expo-router\build\ExpoRoot.js)
+  callComponent.react_stack_bottom_frame (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderWithHooks (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  updateFunctionComponent (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  beginWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  runWithFiberInDEV (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performUnitOfWork (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  workLoopSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  renderRootSync (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRoot (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+  performWorkOnRootViaSchedulerTask (node_modules\react-native\Libraries\Renderer\implementations\ReactFabric-dev.js)
+
+Call Stack
+  ExpoRoot (node_modules\expo-router\build\ExpoRoot.js)
+  App (node_modules\expo-router\build\qualified-entry.js)
+  WithDevTools (node_modules\expo\src\launch\withDevTools.tsx)
+
+### Planner Response
+
+The new error (`TurboModule method "installTurboModule" called with 1 arguments, expected 0`) confirms the problem: `react-native-worklets@0.8.3` has a different native interface than what Expo Go ships with (0.7.4). We need to revert worklets to 0.7.4 AND fix the Babel plugin mismatch. Let me investigate the root cause:
+
+*User accepted the command `node -e "const pkg = require('./node_modules/react-native-reanimated/package.json'); console.log('reanimated:', pkg.version); console.log('deps:', JSON.stringify(pkg.dependencies, null, 2)); console.log('peerDeps:', JSON.stringify(pkg.peerDependencies, null, 2))"`*
+
+*User accepted the command `node -e "try { const p = require('./node_modules/react-native-reanimated/plugin/package.json'); console.log(JSON.stringify(p,null,2)) } catch(e) { console.log('no plugin pkg') }; const fs=require('fs'); const files = fs.readdirSync('./node_modules/react-native-reanimated/plugin'); console.log(files)"`*
+
+*User accepted the command `node -e "const content = require('fs').readFileSync('./node_modules/react-native-reanimated/plugin/index.js','utf8'); const match = content.match(/worklets.*?version.*?(\d+\.\d+\.\d+)/i) || content.match(/(\d+\.\d+\.\d+)/); console.log('match:', match ? match[1] : 'none'); console.log('First 500 chars:', content.substring(0,500))"`*
+
+### User Input
+
+continue
+
+*Listed directory [template-mobile](file:///d:/ai-logs-git/template-mobile) *
+
+*Viewed [package.json](file:///d:/ai-logs-git/template-mobile/package.json) *
+
+*Viewed [metro.config.js](file:///d:/ai-logs-git/template-mobile/metro.config.js) *
+
+*Grep searched codebase*
+
+*Viewed [app.json](file:///d:/ai-logs-git/template-mobile/app.json) *
+
+*User accepted the command `cmd /c dir /b /a d:\ai-logs-git\template-mobile\*babel*`*
+
+*User accepted the command `powershell -Command "Get-Content -Path 'C:\Users\roni.RATHODRONAK\.gemini\antigravity-ide\brain\4e3d6572-aaaa-498e-9cec-9e202249fd0a\.system_generated\logs\transcript.jsonl' -Tail 10"`*
+
+*User accepted the command `powershell -Command "Select-String -Path 'C:\Users\roni.RATHODRONAK\.gemini\antigravity-ide\brain\4e3d6572-aaaa-498e-9cec-9e202249fd0a\.system_generated\logs\transcript.jsonl' -Pattern '\"step_index\":136'"`*
+
+*User accepted the command `powershell -Command "Select-String -Path 'C:\Users\roni.RATHODRONAK\.gemini\antigravity-ide\brain\4e3d6572-aaaa-498e-9cec-9e202249fd0a\.system_generated\logs\transcript.jsonl' -Pattern 'TurboModule'"`*
+
+*User accepted the command `powershell -Command "Select-String -Path 'C:\Users\roni.RATHODRONAK\.gemini\antigravity-ide\brain\4e3d6572-aaaa-498e-9cec-9e202249fd0a\.system_generated\logs\transcript.jsonl' -Pattern 'reanimated:'"`*
+
+*User accepted the command `powershell -Command "Select-String -Path 'C:\Users\roni.RATHODRONAK\.gemini\antigravity-ide\brain\4e3d6572-aaaa-498e-9cec-9e202249fd0a\.system_generated\logs\transcript.jsonl' -Pattern '\"step_index\":14'"`*
+
+*User accepted the command `powershell -Command "$lines = Get-Content -Path 'C:\Users\roni.RATHODRONAK\.gemini\antigravity-ide\brain\4e3d6572-aaaa-498e-9cec-9e202249fd0a\.system_generated\logs\transcript.jsonl'; for ($i = $lines.Length - 30; $i -lt $lines.Length; $i++) { if ($i -ge 0) { $lines[$i] | ConvertFrom-Json | Select-Object step_index, type, status, @{Name='content'; Expression={$_.content.Substring(0, [Math]::Min($_.content.Length, 150))}} } }"`*
+
+*User accepted the command `node -e "const fs = require('fs'); const lines = fs.readFileSync('C:\\Users\\roni.RATHODRONAK\\.gemini\\antigravity-ide\\brain\\4e3d6572-aaaa-498e-9cec-9e202249fd0a\\.system_generated\\logs\\transcript.jsonl', 'utf8').trim().split('\n'); console.log(lines.slice(-15).map(l => { const j = JSON.parse(l); return { step: j.step_index, source: j.source, type: j.type, summary: j.content ? j.content.substring(0, 120) : (j.tool_calls ? JSON.stringify(j.tool_calls).substring(0,120) : '') }; }));"`*
+
+*User accepted the command `npx expo install --check`*
+
+*User accepted the command `powershell -Command "Select-String -Path 'C:\Users\roni.RATHODRONAK\.gemini\antigravity-ide\brain\4e3d6572-aaaa-498e-9cec-9e202249fd0a\.system_generated\logs\transcript.jsonl' -Pattern 'mismatch'"`*
+
+*User accepted the command `node -e "const fs = require('fs'); const lines = fs.readFileSync('C:\\Users\\roni.RATHODRONAK\\.gemini\\antigravity-ide\\brain\\4e3d6572-aaaa-498e-9cec-9e202249fd0a\\.system_generated\\logs\\transcript.jsonl', 'utf8').trim().split('\n'); for (const line of lines) { if (line.includes('mismatch') || line.includes('worklets') && line.includes('Babel')) { const j = JSON.parse(line); if (j.content && j.content.includes('mismatch')) console.log(j.step_index, j.content.substring(0, 500)); } }"`*
+
+*User accepted the command `node -e "const fs = require('fs'); const file = './node_modules/react-native-reanimated/plugin/index.js'; if (fs.existsSync(file)) { const code = fs.readFileSync(file, 'utf8'); console.log('file exists'); const lines = code.split('\n'); for (let i = 0; i < lines.length; i++) { if (lines[i].includes('worklets') || lines[i].includes('Worklets')) console.log(i, lines[i]); } } else { console.log('file does not exist'); }"`*
+
+*User accepted the command `node -e "const fs = require('fs'); const lines = fs.readFileSync('C:\\Users\\roni.RATHODRONAK\\.gemini\\antigravity-ide\\brain\\4e3d6572-aaaa-498e-9cec-9e202249fd0a\\.system_generated\\logs\\transcript.jsonl', 'utf8').trim().split('\n'); for (const line of lines) { if (line.includes('0.7.4') && line.includes('0.8.3')) { const j = JSON.parse(line); if (j.content) console.log(j.step_index, j.content.substring(0, 300)); } }"`*
+
+*User accepted the command `node -e "const fs = require('fs'); const lines = fs.readFileSync('C:\\Users\\roni.RATHODRONAK\\.gemini\\antigravity-ide\\brain\\4e3d6572-aaaa-498e-9cec-9e202249fd0a\\.system_generated\\logs\\transcript.jsonl', 'utf8').trim().split('\n'); for (const line of lines) { const j = JSON.parse(line); if (j.step_index === 123) { console.log(j.content.substring(0, 3000)); } }"`*
+
+*User accepted the command `node -e "const fs = require('fs'); const glob = require('path'); function findPkgJson(dir) { if (!fs.existsSync(dir)) return; const files = fs.readdirSync(dir); for (const f of files) { const p = glob.join(dir, f); if (f === 'node_modules') continue; if (fs.statSync(p).isDirectory()) { findPkgJson(p); } else if (f === 'package.json') { const pkg = JSON.parse(fs.readFileSync(p, 'utf8')); if (pkg.name === 'react-native-worklets' || pkg.name === 'react-native-reanimated') { console.log(p, pkg.version); } } } } findPkgJson('./node_modules');"`*
+
+*User accepted the command `npm install react-native-worklets@0.7.4 --save-exact`*
+
+*User accepted the command `node -e "console.log(require('./node_modules/react-native-worklets/package.json').version);"`*
+
+*User accepted the command `npx expo install --check`*
+
+*Viewed [charts.tsx](file:///d:/ai-logs-git/template-mobile/app/%28tabs%29/charts.tsx) *
+
+*Viewed [_layout.tsx](file:///d:/ai-logs-git/template-mobile/app/%28tabs%29/_layout.tsx) *
+
+*User accepted the command `D:\platform-tools\platform-tools\adb.exe reverse tcp:8081 tcp:8081`*
+
+*User accepted the command `powershell -Command "$env:PATH='D:\platform-tools\platform-tools;' + $env:PATH; npx expo start -c"`*
+
+*Viewed [task-204.log](file:///C:/Users/roni.RATHODRONAK/.gemini/antigravity-ide/brain/4e3d6572-aaaa-498e-9cec-9e202249fd0a/.system_generated/tasks/task-204.log) *
+
+*User accepted the command `cmd /c "set PATH=D:\platform-tools\platform-tools;%PATH% && npx expo start -c"`*
+
+*Viewed [task-211.log](file:///C:/Users/roni.RATHODRONAK/.gemini/antigravity-ide/brain/4e3d6572-aaaa-498e-9cec-9e202249fd0a/.system_generated/tasks/task-211.log) *
+
+*Viewed [task-211.log](file:///C:/Users/roni.RATHODRONAK/.gemini/antigravity-ide/brain/4e3d6572-aaaa-498e-9cec-9e202249fd0a/.system_generated/tasks/task-211.log) *
+
+### Planner Response
+
+I have resolved the version mismatch and started a clean Metro server. 
+
+### What Was Done
+1. **Identified the Native Mismatch**: The error `TurboModule method "installTurboModule" called with 1 arguments (expected 0)` confirmed that the JavaScript package version of `react-native-worklets` (0.8.3) did not match the precompiled native code bundled inside your Expo Go application.
+2. **Downgraded to the Correct Version**: Downgraded `react-native-worklets` to `0.7.4` to align with the expected version for Expo SDK 55.
+3. **Verified Dependency Integrity**: Ran `npx expo install --check` to ensure the project packages are fully compatible with your current Expo SDK version. The check passed successfully.
+4. **Configured USB Tunneling**: Executed `adb reverse tcp:8081 tcp:8081` to map port 8081 from your Android device to your computer via USB.
+5. **Started Clean Dev Server**: Wiped out stale Metro/Babel caches and launched the server using:
+   ```cmd
+   cmd /c "set PATH=D:\platform-tools\platform-tools;%PATH% && npx expo start -c"
+   ```
+
+### Next Steps
+The Metro server is running in the background and rebuilding its cache.
+
+1. Open **Expo Go** on your USB-connected Android phone.
+2. Under the **"Enter URL manually"** option, enter:
+   `exp://127.0.0.1:8081`
+3. Tap **Connect** to load and bundle the application.

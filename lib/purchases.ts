@@ -78,11 +78,13 @@ export async function fetchCustomerInfo(): Promise<CustomerInfo | null> {
 }
 
 export async function purchasePackage(pkg: PurchasesPackage): Promise<CustomerInfo | null> {
+  if (IS_EXPO_GO) return null
   const { customerInfo } = await Purchases.purchasePackage(pkg)
   return customerInfo
 }
 
-export async function restorePurchases(): Promise<CustomerInfo> {
+export async function restorePurchases(): Promise<CustomerInfo | null> {
+  if (IS_EXPO_GO) return null
   return Purchases.restorePurchases()
 }
 
